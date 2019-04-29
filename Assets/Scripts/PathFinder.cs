@@ -9,6 +9,9 @@ public class PathFinder : MonoBehaviour
     [SerializeField] WayPoint startWaypoint, endWaypoint;
 
     Dictionary<Vector2Int, WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
+    Queue<WayPoint> queue = new Queue<WayPoint>();
+    [SerializeField]bool isRunning = true;
+
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -21,22 +24,60 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        PathFind();
+       // ExploreNeighbours();
     }
-
-    void ExploreNeighbours()
+    private void PathFind()
     {
+        queue.Enqueue(startWaypoint);
+
+        while (queue.Count > 0 && isRunning)
+        {
+            var searchCenter = queue.Dequeue();
+            print("Searching from point:" + searchCenter);
+            HaltIfEndFound(searchCenter);
+            ExploreNeighbours(searchCenter);
+            searchCenter.isExplored = true;
+        }
+        print("finished pathfinding?");
+    }
+    private void HaltIfEndFound(WayPoint searchCenter)
+    {
+        if (searchCenter == endWaypoint)
+        {
+            print("searching from end node, therefore stopping");
+            isRunning = false;
+        }
+    }
+    void ExploreNeighbours(WayPoint from)
+    {
+        if (!isRunning) { return; }
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int explorationCoordinates = startWaypoint.GetGridPos() + direction;
+            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
             try
             {
-                grid[explorationCoordinates].SetTopColor(Color.blue);
+                QueueNewNeighbours(neighbourCoordinates);
             }
             catch (Exception Err)
             {
                 print(Err.Message);
             }
+        }
+    }
+
+    private void QueueNewNeighbours(Vector2Int neighbourCoordinates)
+    {
+        WayPoint neighbour = grid[neighbourCoordinates];
+        if (neighbour.isExplored)
+        {
+
+        }
+        else
+        {
+            neighbour.SetTopColor(Color.blue); //todo rework later
+            queue.Enqueue(neighbour);
+            print("queueing " + neighbour);
         }
     }
 

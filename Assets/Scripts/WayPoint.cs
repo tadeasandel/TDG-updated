@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WayPoint : MonoBehaviour
 {
+    public bool isExplored = false;
+
     Vector2Int gridPos;
     const int gridSize = 10;
     public int GetGridSize()
