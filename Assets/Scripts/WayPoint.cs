@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WayPoint : MonoBehaviour
 {
+    [SerializeField] Color exploredColor;
+
     public bool isExplored = false;
+    public WayPoint exploredFrom;
 
     Vector2Int gridPos;
+
     const int gridSize = 10;
+
     public int GetGridSize()
     {
         return gridSize;
