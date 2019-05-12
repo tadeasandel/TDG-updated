@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] float secondsBetweenSpawns = 10f;
-    [SerializeField] GameObject enemies;
-    [SerializeField] int numberOfEnemies = 10;
+    [Range(0.1f, 120f)] [SerializeField] float secondsBetweenSpawns = 2f;
+    [SerializeField] EnemyMovement enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +16,9 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        if (numberOfEnemies == 0) {yield return null; }
-        else
+        while (true)
         {
-            enemies = new GameObject();
-            numberOfEnemies--;
+            Instantiate(enemies, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
