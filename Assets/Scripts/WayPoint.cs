@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class WayPoint : MonoBehaviour
@@ -7,6 +8,9 @@ public class WayPoint : MonoBehaviour
 
     public bool isExplored = false;
     public WayPoint exploredFrom;
+    public bool isPlaceable = true;
+
+    [SerializeField]Tower tower;
 
     Vector2Int gridPos;
 
@@ -25,9 +29,24 @@ public class WayPoint : MonoBehaviour
         );
     }
 
-    public void SetTopColor(Color color)
+    void OnMouseOver()
     {
-        MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (isPlaceable)
+            {
+                CreateTower();
+                isPlaceable = false;
+            }
+            else
+            {
+                print("can't place here");
+            }
+        }
+    }
+
+    private void CreateTower()
+    {
+        Instantiate(tower,transform.position,Quaternion.identity);
     }
 }
