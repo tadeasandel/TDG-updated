@@ -25,13 +25,13 @@ public class EnemyDamage : MonoBehaviour
     {
         var vfx = Instantiate(deathparticles,transform.position,Quaternion.identity);
         vfx.Play();
+        Destroy(vfx.gameObject, vfx.main.duration);
         Destroy(gameObject);
     }
     private void Processhit()
     {
         hitpoints--;
         hitParticles.Play();
-        print("current HP is - " + hitpoints.ToString()); 
     }
 
 }

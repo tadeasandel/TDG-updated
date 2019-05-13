@@ -63,6 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102e9afde9cffe242b900aeb36bc80fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementPeriod: 0.5
+  deathParticles: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
+    type: 3}
 --- !u!114 &209801597
 MonoBehaviour:
   m_ObjectHideFlags: 0
