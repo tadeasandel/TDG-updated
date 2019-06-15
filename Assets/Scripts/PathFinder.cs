@@ -85,12 +85,12 @@ public class PathFinder : MonoBehaviour
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
             if(grid.ContainsKey(neighbourCoordinates))
             {
-                QueueNewNeighbours(neighbourCoordinates);
+                QueueNewNeighbours(neighbourCoordinates, direction);
             }
         }
     }
 
-    private void QueueNewNeighbours(Vector2Int neighbourCoordinates)
+    private void QueueNewNeighbours(Vector2Int neighbourCoordinates, Vector2Int direction)
     {
         WayPoint neighbour = grid[neighbourCoordinates];
         if (neighbour.isExplored || queue.Contains(neighbour))
@@ -100,6 +100,7 @@ public class PathFinder : MonoBehaviour
         else
         {
             queue.Enqueue(neighbour);
+            neighbour.directionFrom = direction;
             neighbour.exploredFrom = searchCenter;
         }
     }

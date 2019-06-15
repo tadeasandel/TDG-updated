@@ -2,11 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float movementPeriod = 0.5f;
+    [SerializeField] float movementPeriod = 0.00001f;
     [SerializeField] ParticleSystem deathParticles;
+    Vector2Int fromBottom = new Vector2Int(0, 1);
+    Vector2Int fromTop = new Vector2Int(0, -1);
+    Vector2Int fromLeft = new Vector2Int(1, 0);
+    Vector2Int fromRight = new Vector2Int(-1, 0);
+    [SerializeField]public float movingFactor = 10f;
+   // string right = "right", left = "left", up = "up", down = "down";
+    [SerializeField]public float movementSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +27,39 @@ public class EnemyMovement : MonoBehaviour
     {
         foreach (WayPoint Waypoint in path)
         {
-            transform.position = Waypoint.transform.position;
-            yield return new WaitForSeconds(movementPeriod);
+
+                    if (Waypoint.directionFrom == fromBottom)
+                    {
+                for (int i = 0; i < 10; i++)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + movingFactor);
+                    yield return new WaitForSeconds(movementPeriod);
+                }
+            }
+                    if (Waypoint.directionFrom == fromTop)
+                    {
+                for (int i = 0; i < 10; i++)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - movingFactor);
+                    yield return new WaitForSeconds(movementPeriod);
+                }
+            }
+                    if (Waypoint.directionFrom == fromLeft)
+                    {
+                for (int i = 0; i < 10; i++)
+                {
+                    transform.position = new Vector3(transform.position.x + movingFactor, transform.position.y, transform.position.z);
+                    yield return new WaitForSeconds(movementPeriod);
+                }
+            }
+                    if (Waypoint.directionFrom == fromRight)
+                    {
+                for (int i = 0; i < 10; i++)
+                {
+                    transform.position = new Vector3(transform.position.x - movingFactor, transform.position.y, transform.position.z);
+                    yield return new WaitForSeconds(movementPeriod);
+                }
+            }
         }
         SelfDestruct();
     }

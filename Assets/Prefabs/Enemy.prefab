@@ -67,6 +67,8 @@ MonoBehaviour:
   movementPeriod: 0.5
   deathParticles: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 3}
+  movingFactor: 1
+  movementSpeed: 100
 --- !u!114 &209801597
 MonoBehaviour:
   m_ObjectHideFlags: 0

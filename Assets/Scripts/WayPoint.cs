@@ -8,6 +8,7 @@ public class WayPoint : MonoBehaviour
 
     public bool isExplored = false;
     public WayPoint exploredFrom;
+    public Vector2Int directionFrom;
     public bool isPlaceable = true;
 
 

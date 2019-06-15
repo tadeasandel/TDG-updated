@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.38454434, g: 0.048792757, b: 0.00404038, a: 1}
+  m_IndirectSpecularColor: {r: 0.38429633, g: 0.047833413, b: 0.0031217707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -611,7 +611,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152435161}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8108623d03bd3d5499530213544bec83, type: 3}
@@ -4159,7 +4159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49764288d4cb24346ba96e474662d6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenSpawns: 5
+  secondsBetweenSpawns: 10
   enemies: {fileID: 209801596, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
   enemyParentTransform: {fileID: 1123703132}
   scoreText: {fileID: 1754454264}
